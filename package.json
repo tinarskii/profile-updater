@@ -1,0 +1,16 @@
+{
+  "name": "github-profile-updater",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Update tinvv/tinnvv every half an hour",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yalright",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@octokit/core": "^3.5.1",
+    "@octokit/rest": "^18.12.0"
+  }
+}
