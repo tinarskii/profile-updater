@@ -24,6 +24,9 @@ jobs:
         node-version: 16.x
         cache: 'yarn'
 
+    - name: Install Dependencies 📦
+    - run: yarn
+
     - name: Execute
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
