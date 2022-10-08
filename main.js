@@ -8,7 +8,7 @@ var repos = [];
 
 octokit.rest.repos
   .listForUser({
-    username: "tinvv",
+    username: "tinarskii",
     sort: "full_name",
     per_page: 100,
   })
@@ -21,13 +21,13 @@ octokit.rest.repos
         issues: repo.open_issues,
         isFork: repo.fork,
         pulls: await (
-          await octokit.rest.pulls.list({ owner: "tinvv", repo: repo.name })
+          await octokit.rest.pulls.list({ owner: "tinarskii", repo: repo.name })
         ).data.length,
       });
       if (repos.length === data.length) {
         const readmeContent = await octokit.rest.repos.getReadme({
-          owner: "tinvv",
-          repo: "tinvv",
+          owner: "tinarskii",
+          repo: "tinarskii",
         });
         const content = Buffer.from(
           readmeContent.data.content,
@@ -50,21 +50,21 @@ octokit.rest.repos
               .filter((repo) => !repo.isFork)
               .map(
                 (repo) =>
-                  `- [${repo.repo}](https://github.com/tinvv/${repo.repo})` +
+                  `- [${repo.repo}](https://github.com/tinarskii/${repo.repo})` +
                   (!repo.star && !repo.fork && !repo.pulls && !repo.issues
                     ? ""
                     : " (" +
                       (repo.star > 0
-                        ? ` [${repo.star} stars](https://github.com/tinvv/${repo.repo}/stargazers)`
+                        ? ` [${repo.star} stars](https://github.com/tinarskii/${repo.repo}/stargazers)`
                         : "") +
                       (" " + repo.pulls > 0
-                        ? ` [${repo.pulls} pulls](https://github.com/tinvv/${repo.repo}/pulls)`
+                        ? ` [${repo.pulls} pulls](https://github.com/tinarskii/${repo.repo}/pulls)`
                         : "") +
                       (" " + repo.fork > 0
-                        ? ` [${repo.fork} forks](https://github.com/tinvv/${repo.repo}/network/members)`
+                        ? ` [${repo.fork} forks](https://github.com/tinarskii/${repo.repo}/network/members)`
                         : "") +
                       (" " + repo.issues > 0
-                        ? ` [${repo.issues} issues](https://github.com/tinvv/${repo.repo}/issues)`
+                        ? ` [${repo.issues} issues](https://github.com/tinarskii/${repo.repo}/issues)`
                         : "") +
                       " )")
               )
@@ -78,7 +78,7 @@ octokit.rest.repos
               .filter((repo) => repo.isFork)
               .map(
                 (repo) =>
-                  `- [${repo.repo}](https://github.com/tinvv/${repo.repo})`
+                  `- [${repo.repo}](https://github.com/tinarskii/${repo.repo})`
               )
               .sort()
               .toString()
@@ -87,8 +87,8 @@ octokit.rest.repos
         );
         const modify = data.join("\n");
         octokit.rest.repos.createOrUpdateFileContents({
-          owner: "tinvv",
-          repo: "tinvv",
+          owner: "tinarskii",
+          repo: "tinarskii",
           path: "README.md",
           branch: "main",
           message: "Update README.md",
